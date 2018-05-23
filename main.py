@@ -29,6 +29,11 @@ if __name__ == "__main__":
             r.extract_keywords_from_text(title['summary'])
             print(r.get_ranked_phrases_with_scores()[0:3])
         headlines = []
+    # To generate Tags for each headline:
+    # Perform Stemming then
+    # Tokenize
+    # create
+
 
 
 
