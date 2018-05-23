@@ -7,4 +7,4 @@ Simple RSS news aggregator which shows trending topics in politics
 extract RSS feeds
 
 ## Authors
-* **Stephen Liu 
+* **Stephen Liu** 
