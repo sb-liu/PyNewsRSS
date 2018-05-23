@@ -1,6 +1,4 @@
 import feedparser
-from rake_nltk import Rake
-
 if __name__ == "__main__":
 
     # Washington Post: http://feeds.washingtonpost.com/rss/politics
@@ -16,24 +14,17 @@ if __name__ == "__main__":
 
     # Each entry has the following common properties:
     # 'title', 'title_detail', 'summary', 'summary_detail', 'links',
-    r = Rake()
     headlines = []
     # go through each news outlet
     for source in source_list:
+        print(source)
         # get the parsed RSS feed
         d = feedparser.parse(source)
         # extract each head line
         a = d['entries']
         for title in a:
-            #headlines.append(title['summary'])
-            r.extract_keywords_from_text(title['summary'])
-            print(r.get_ranked_phrases_with_scores()[0:3])
-        headlines = []
-    # To generate Tags for each headline:
-    # Perform Stemming then
-    # Tokenize
-    # create
-
+            print(title['summary'])
+            print("\n")
 
 
 
