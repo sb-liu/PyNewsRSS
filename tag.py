@@ -5,19 +5,11 @@ from nltk.tokenize import RegexpTokenizer
 from nltk.corpus import stopwords
 from collections import Counter
 
-
-# 1. Create a freq list from the article summary
-# 2. Rank the title of the article based on the freq list in step 1
-# 3. Create the hash tags based on given ratio (hashtag/title)
-
-
-
-
 # setting the stop words
 stops = set(stopwords.words('english'))
 
 # Removes titles such as WATCH: BREAKING NEWS
-stops.add('WATCH')
+stops.add('watch')
 
 # first tokenize the text
 source_list = ['http://feeds.washingtonpost.com/rss/politics',
@@ -33,7 +25,9 @@ headlines = []
 ps = PorterStemmer()
 # our counter for word frequency
 ct = Counter()
+ct2 = Counter()
 word_tokenize = RegexpTokenizer(r'\w+')
+list_titles = []
 # go through each news outlet
 for source in source_list:
     # get the parsed RSS feed
@@ -44,11 +38,32 @@ for source in source_list:
         # removes punctuation and tokenizes the word
         words = word_tokenize.tokenize(title['title'])
         # removes stop words
-        filtered_words = [word for word in words if word not in stops]
+        filtered_words = [word for word in words if (word.lower()) not in stops]
+        list_titles.append(filtered_words)
         # stem the words and add them to the counter
         for fw in filtered_words:
-            #ct[ps.stem(fw)] += 1
-            ct[fw] += 1
-        #print(filtered_words)
+            ct[ps.stem(fw)] += 1
+            ct2[fw] += 1
 
-#print(ct)
+# adding the un-processed tags to a set
+tags = set()
+for i in ct.most_common(20):
+    tags.add(i[0])
+
+processed_set = Counter()
+# go through each title and see if we can combine tags ie. #south #korea -> #South Korea
+is_prev_tag = False
+prev = ""
+print(tags)
+for title in list_titles:
+    for index in range(1, len(title)):
+        if (title[index-1].lower() in tags) and (title[index].lower() in tags):
+            combined = title[index-1] + " " + title[index]
+            processed_set[combined] += 1
+        if title[index-1].lower() in tags:
+            processed_set[title[index-1].lower()] += 1
+print(processed_set.most_common(10))
+
+
+
+
