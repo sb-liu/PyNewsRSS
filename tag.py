@@ -6,7 +6,7 @@ from nltk.corpus import stopwords
 from collections import Counter
 from urllib.request import ProxyHandler
 
-
+# support for Proxy
 our_proxy = ProxyHandler({})
 
 # setting the stop words
@@ -49,16 +49,11 @@ for source in source_list:
             ct[ps.stem(fw)] += 1
             ct2[fw] += 1
 
-# adding the un-processed tags to a set
-tags = set()
-for i in ct.most_common(20):
-    tags.add(i[0])
-
+tags = dict(ct.most_common(20))
 processed_set = Counter()
 # go through each title and see if we can combine tags ie. #south #korea -> #South Korea
 is_prev_tag = False
 prev = ""
-print(tags)
 for title in list_titles:
     for index in range(1, len(title)):
         if (title[index-1].lower() in tags) and (title[index].lower() in tags):
