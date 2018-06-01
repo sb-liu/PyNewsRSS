@@ -7,7 +7,7 @@ from collections import Counter
 from urllib.request import ProxyHandler
 
 # support for Proxy
-our_proxy = ProxyHandler({})
+our_proxy = ProxyHandler({"http": "204.40.194.129:3128"})
 
 # setting the stop words
 stops = set(stopwords.words('english'))
@@ -59,8 +59,12 @@ for title in list_titles:
         if (title[index-1].lower() in tags) and (title[index].lower() in tags):
             combined = title[index-1] + " " + title[index]
             processed_set[combined] += 1
-        if title[index-1].lower() in tags:
-            processed_set[title[index-1].lower()] += 1
+            is_prev_tag = True
+        else:
+            if (title[index-1].lower() in tags) and not is_prev_tag:
+                processed_set[title[index - 1].lower()] += 1
+            is_prev_tag = False
+
 print(processed_set.most_common(10))
 
 
