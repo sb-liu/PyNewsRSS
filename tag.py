@@ -4,6 +4,10 @@ from nltk.stem import PorterStemmer
 from nltk.tokenize import RegexpTokenizer
 from nltk.corpus import stopwords
 from collections import Counter
+from urllib.request import ProxyHandler
+
+
+our_proxy = ProxyHandler({})
 
 # setting the stop words
 stops = set(stopwords.words('english'))
@@ -31,7 +35,7 @@ list_titles = []
 # go through each news outlet
 for source in source_list:
     # get the parsed RSS feed
-    d = feedparser.parse(source)
+    d = feedparser.parse(source,  handlers=[our_proxy])
     # extract each head line
     a = d['entries']
     for title in a:
