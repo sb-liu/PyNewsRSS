@@ -1,4 +1,5 @@
 import feedparser
+
 if __name__ == "__main__":
 
     # Washington Post: http://feeds.washingtonpost.com/rss/politics
@@ -23,7 +24,7 @@ if __name__ == "__main__":
         # extract each head line
         a = d['entries']
         for title in a:
-            print(title['summary'])
+            print(title['title'])
             print("\n")
 
 
