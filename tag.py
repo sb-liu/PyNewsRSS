@@ -21,9 +21,11 @@ source_list = ['http://feeds.washingtonpost.com/rss/politics',
 
 # Each entry has the following common properties:
 # 'title', 'title_detail', 'summary', 'summary_detail', 'links',
+
 def gen_tags(rss, stops, proxy):
     # support for Proxy
-    our_proxy = ProxyHandler({proxy})
+    protocol = proxy.split("/")[0][:-1]
+    our_proxy = ProxyHandler({protocol: proxy})
     headlines = []
     # used for stemming
     ps = PorterStemmer()
