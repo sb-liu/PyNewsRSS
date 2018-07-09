@@ -17,6 +17,6 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('admin/', admin.site.urls)
-    # anything with /tag will get passed on to the TagGenerator.urls path
+    path('admin/', admin.site.urls),
+    path('generator', include('generator.urls') )
 ]
