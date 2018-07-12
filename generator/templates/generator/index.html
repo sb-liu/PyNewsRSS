@@ -1,5 +1,15 @@
 {% extends 'generator/layout.html' %}
 
 {% block content %}
-<h1> page </h1>
+<div class="continter">
+    <h1> Page </h1>
+    <a href="/generator/tags"> Generate Tags </a>
+    <ul>
+        <li>{{ one }}</li>
+        <li>{{ two }}</li>
+        <li>{{ three }}</li>
+        <li>{{ four }}</li>
+        <li>{{ five }}</li>
+    </ul>
+</div>
 {% endblock %}

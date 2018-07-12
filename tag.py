@@ -70,6 +70,8 @@ def gen_tags(rss, stops, proxy):
 
     return processed_set.most_common(5)
 
+    print(gen_tags(source_list,stops,'https://204.40.194.129:3128'))
+
 
 
 
