@@ -22,7 +22,7 @@ source_list = ['http://feeds.washingtonpost.com/rss/politics',
 # Each entry has the following common properties:
 # 'title', 'title_detail', 'summary', 'summary_detail', 'links',
 
-def gen_tags(rss, stops, proxy):
+def gen_tags(rss, stops, proxy=''):
     # support for Proxy
     protocol = proxy.split("/")[0][:-1]
     our_proxy = ProxyHandler({protocol: proxy})
@@ -70,7 +70,6 @@ def gen_tags(rss, stops, proxy):
 
     return processed_set.most_common(5)
 
-    print(gen_tags(source_list,stops,'https://204.40.194.129:3128'))
 
 
 
