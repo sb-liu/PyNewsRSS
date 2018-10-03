@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.template import Template
 from tag import gen_tags
 from nltk.corpus import stopwords
+import json
 
 # Create your views here.
 def index(request):
@@ -21,8 +22,7 @@ def tag_response(request):
                 'https://abcnews.go.com/abcnews/politicsheadlines',
                 ]
     list_tags = gen_tags(source_list, stops)
-    html_content = ""
+    head_line_dict = dict()
     for tag in list_tags:
-        line = tag[0] + ": " + str(tag[1]) + "\n"
-        html_content += line
-    return render(request, 'generator/index.html', context={'a':html_content})
+        head_line_dict[tag[0]] = str(tag[1])
+    return render(request, 'generator/index.html',{'xd': head_line_dict})
