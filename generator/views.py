@@ -25,4 +25,4 @@ def tag_response(request):
     head_line_dict = dict()
     for tag in list_tags:
         head_line_dict[tag[0]] = str(tag[1])
-    return render(request, 'generator/index.html',{'xd': head_line_dict})
+    return render(request, 'generator/index.html',{'head_lines': head_line_dict})

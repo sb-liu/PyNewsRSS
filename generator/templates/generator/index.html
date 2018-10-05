@@ -5,7 +5,7 @@
     <h1> PyNewsRSS </h1>
     <a href="/generator/tags"> Generate Tags </a>
     <ul>
-        {% for key, value in xd.items %}
+        {% for key, value in head_lines.items %}
         <li>{{key}} : {{value}}</li>
         {% endfor %}
     </ul>
